@@ -3,7 +3,6 @@ import cors from 'cors'
 const app = express()
 const port = 5000
 
-
 app.use(express.json())
 app.use(cors())
 
@@ -18,12 +17,12 @@ app.post('/analisar', (req, res) => {
 
     let setor = 'setor nao indentificado'
 
-    if (texto.includes('abrir conta') || texto.includes('nova conta')) {
-        setor = 'Abrir Contas'
-    } else if (texto.includes('cartão') || texto.includes('bloquear cartao')) {
-        setor = 'Cartões'
-    } else if (texto.includes('financiamento') || texto.includes('emprestimo')) {
-        setor = ' Credito e Financiamentos'
+    if (texto.includes('conta') || texto.includes('emprestimo') || texto.includes('financiamento')) {
+        setor = 'Gerência de Atendimento'
+    } else if (texto.includes('cartão') || texto.includes('cheque') || texto.includes('pagamento')) {
+        setor = 'Caixas'
+    } else if (texto.includes('automovel') || texto.includes('residencia') || texto.includes('veiculo')) {
+        setor = 'Seguros e Previdência'
     }
     res.json({setor})
     console.log(setor)
